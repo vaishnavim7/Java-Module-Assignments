@@ -1,0 +1,307 @@
+01.	Write a program to print table of any entered number using loop.
+import java.util.Scanner;
+
+class NumTable{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the num to prints it's multiplication table :");
+		int num = sc.nextInt();
+		int table;
+		
+		for(int i=1; i<=10; i++)
+		{
+			table = num *i;
+			System.out.println(num+" * "+i+" = "+table);
+		}
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------
+02.	Write a program to reverse a given number.
+
+import java.util.Scanner;
+
+class RevNum{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the num for reverse:");
+		int num = sc.nextInt();
+		
+		int rev = 0, rem = 0;
+		
+		while(num != 0)
+		{
+			rem = (num % 10);
+			rev = ((rev * 10) + rem);
+			num = (num / 10);
+		}
+		System.out.println("Reverse of "+num+" is "+rev);
+	}
+	
+}
+
+----------------------------------------------------------------------------------------------------------------------
+03.	Program to check whether number is prime or not.
+import java.util.Scanner;
+
+class PrimeNum{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the num: ");
+		int num = sc.nextInt();
+		
+		for(int i = 2; i < num; i++)
+		{
+			if(num % i == 0)
+			{
+				System.out.println(num+" is not prime num");
+				break;
+			}
+			else{
+				System.out.println(num+" is prime num");
+				break;
+			}
+		}
+		
+	}
+	
+}
+
+----------------------------------------------------------------------------------------------------------------------
+04.	Calculate  series : 12+22+32+42+.........+n2
+import java.util.Scanner;
+
+class NumSeries{
+	public static void main(String[] args)
+	{
+		int sum = 12;
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the limit");
+		int l = sc.nextInt();
+		
+		for(int i=1; i<=l; i++)
+		{
+			System.out.println(sum);
+			sum = sum+10;
+		}
+	}
+}
+
+
+----------------------------------------------------------------------------------------------------------------------
+05.	Print all prime numbers between two given numbers. [ break continue ]
+import java.util.Scanner;
+
+class PrimeNumS{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the two limits: ");
+		int l = sc.nextInt();
+		int u = sc.nextInt();
+		int count;
+		/* 4 5 7 10 */
+		
+		System.out.println("prime numbers between "+l+" & "+u+" :");
+		for(int i=l; i <= u; i++)
+		{
+			count = 1;
+			for(int j = 2; j <= i/2; j++)
+			{
+				if(i % j == 0)
+				{
+					count = 0;
+					break;
+				}				
+			}
+			if(count == 1)
+			{
+				System.out.println(i);
+			}
+		}
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------
+06.	Program to show sum and average of 10 element array. Accept array elements from user. 
+import java.util.Scanner;
+
+class ArrayPr1{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int arr[] = new int[10];
+		float sum = 0, avg;
+		
+		System.out.println("Enter the 10 elements: ");
+		for(int i=0; i<arr.length; i++)
+		{
+			arr[i] = sc.nextInt();
+		}
+		for(int a : arr)
+		{
+			sum = sum + a;
+		}
+		
+		avg = sum / 10;
+		System.out.println("Average of 10 elements is "+avg);
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------
+07.	Sort a ten element array in descending order.
+import java.util.Scanner;
+
+class ArrayPr2{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int arr[] = new int[5];
+		int temp;
+		
+		System.out.println("Enter the 5 elements: ");
+		for(int i=0; i<arr.length; i++)
+		{
+			arr[i] = sc.nextInt();
+		}
+		
+		for(int i=0; i<arr.length; i++)
+		{
+			for(int j=i+1; j<arr.length; j++)
+			{
+				if(arr[i] < arr[j])
+				{
+					temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		System.out.println("Descending order: ");
+		for(int a : arr)
+		{
+			System.out.print(a+" ");
+		}
+						
+
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------
+08.	Write a program to reverse the array elements.
+import java.util.Scanner;
+
+class ArrayPr3{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int arr[] = new int[5];
+		int temp;
+		
+		System.out.println("Enter the 5 elements: ");
+		for(int i=0; i<arr.length; i++)
+		{
+			arr[i] = sc.nextInt();
+		}
+		
+		for(int i=0; i<arr.length; i++)
+		{
+			for(int j=i+1; j<arr.length; j++)
+			{
+					temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+			}
+		}
+		
+		System.out.println("Reverse array: ");
+		for(int a : arr)
+		{
+			System.out.print(a+" ");
+		}
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------
+09.	Write a program to search an element in the array.
+import java.util.Scanner;
+
+class ArrayPr4{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of array: ");
+		int s = sc.nextInt();
+		
+		int arr[] = new int[s];
+		int i;
+		
+		System.out.println("Enter the elements: ");
+		for(i=0; i<arr.length; i++)
+		{
+			arr[i] = sc.nextInt();
+		}
+		
+		System.out.println("Enter the element which you want to search : ");
+		int e = sc.nextInt();
+		
+		for(i=0; i<arr.length; i++)
+		{
+			if(arr[i] == e)
+			{
+				System.out.println("Element you search for is "+e+" at intex "+i);
+				break;
+			}
+		}
+		if(i == s)
+		{
+			System.out.println("Element you search for is not found");
+		}
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------
+10.	Write the program to find the sum of even elements and sum of odd elements present in the array of integer type.
+import java.util.Scanner;
+
+class ArrayPr5{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of array: ");
+		int s = sc.nextInt();
+		
+		int arr[] = new int[s];
+		int even=0, odd=0;
+		
+		System.out.println("Enter the elements: ");
+		for(int i=0; i<arr.length; i++)
+		{
+			arr[i] = sc.nextInt();
+		}
+		
+		for(int i=0; i<arr.length; i++)
+		{
+			if(arr[i] % 2 == 0)
+			{
+				even = even + arr[i];
+			}
+			else
+			{
+				odd = odd + arr[i];
+			}
+		}
+		System.out.println("Even elements sum : "+even);
+		System.out.println("Odd elements sum : "+odd);
+		
+	}
+}
+
