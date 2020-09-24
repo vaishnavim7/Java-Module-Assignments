@@ -275,6 +275,58 @@ d.	display total employees and totalSalary using a method.
 Create another class EmployeeDemo (main class) that creates some Employee objects and calls Employee method to 
 display no. of employees and total of their salaries.
 
+import java.util.Scanner;
+
+class Employee{
+	private static int empNo = 100;
+	private int salary;
+	private static int totalSalary = 0;
+	private static int count = 0;
+	
+	void Employee(int sal)
+	{
+		empNo++;
+		salary = sal;
+		count++;
+	}
+	
+	void showData()
+	{
+		System.out.println("Employee ID : "+empNo);
+		System.out.println("Employee Salary : "+salary);
+	}
+	
+	void setTotal()
+	{
+		totalSalary = totalSalary + salary;
+	}
+	
+	void showTotalSal(){
+		System.out.println("Total Salary of "+count+" Employees is "+totalSalary);
+	}
+}
+
+class EmployeeDemo38{
+	public static void main(String args[])
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter number of Employee : ");
+		int n = sc.nextInt();
+		
+		for(int i = 1; i<=n; i++)
+		{
+			System.out.println("Enter the Employee "+i+" Salary : ");
+			int sal = sc.nextInt();
+			Employee e1 = new Employee();
+			e1.Employee(sal);
+			e1.showData();
+			e1.setTotal();
+			e1.showTotalSal();
+		}
+	}
+}
+
 -----------------------------------------------------------------------------------------------------------------
 39.	Create class Product with three data members (pid, price, quantity) and parameterized constructor that takes 
 values for all three data members.  
