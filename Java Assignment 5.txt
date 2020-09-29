@@ -1,0 +1,383 @@
+43.	Create a class OneBHK with instance variables roomArea, hallArea and price. 
+Then create default constructor that initializes instance variables with some values and 
+a parameterized constructor that takes values for all instance variables and stores them in instance variables. 
+Now create a method named show()  to print OneBHK’s instance variable values.
+Create another class TwoBHK which has (inherites) all the properties and behaviors of OneBHK and 
+a new instance variable room2Area. Then create default constructor to initialize all 4 instance variables and 
+a parameterized constructor to take the values for initialization of all instance variables. 
+Override show() method to print all data member information.
+Write main method in another class (Say Demo) and store three TwoBHK flat’s information and print information 
+using show method. Also print total amount of all flats. 
+
+import java.util.Scanner;
+
+class OneBHK
+{
+	int roomArea;
+	int hallArea;
+	int price;
+	
+	OneBHK(){
+		//this(10, 15, 15000);
+		roomArea = 20;
+		hallArea = 30;
+		price = 7000;
+	}
+	
+	OneBHK(int roomArea, int hallArea, int price){
+		this.roomArea = roomArea;
+		this.hallArea = hallArea;
+		this.price = price;
+	}
+	
+	void show(){
+		System.out.println("Room 1 Area : "+roomArea);
+		System.out.println("Hall Area : "+hallArea);
+		//System.out.println("Price : "+price);
+	}
+}
+
+class TwoBHK extends OneBHK
+{
+	private int room2Area;
+	private static int total = 0;
+	static int count = 0;
+	TwoBHK(){
+		super();
+		room2Area = 15;
+	}
+	TwoBHK(int roomArea, int room2Area, int hallArea, int price){
+		super(roomArea,hallArea, price);
+		this.room2Area = room2Area;
+		
+		total = total + price;
+		count++;
+	}
+	
+	void show(){
+		super.show();
+		System.out.println("Room 2 Area : "+room2Area);
+		System.out.println("Price : "+price);
+		System.out.println("Total Price of "+count+" flats : "+total);
+	}
+}
+
+class HomeDemo43
+{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Number:");
+		int num = sc.nextInt();
+		
+		for(int i=1; i<=num; i++)
+		{
+			System.out.println("Input Flat "+i+" Details :");
+			System.out.println("Enter Room Area");
+			int roomArea = sc.nextInt(); 
+			System.out.println("Enter Room 2 Area");
+			int room2Area = sc.nextInt(); 
+			System.out.println("Enter Hall Area");
+			int hallArea = sc.nextInt(); 
+			System.out.println("Enter Price");
+			int price = sc.nextInt();
+
+			System.out.println("-----Flat "+i+" Details :-----");
+			TwoBHK t = new TwoBHK(roomArea, room2Area, hallArea, price);
+			t.show();
+			System.out.println("------------------------------------------------");
+		}
+	}
+}
+
+-------------------------------------------------------------------------------------------------------------------
+44.	Create three classes
+-	Faculty with two data members facultyId and salary and two methods, one intput() method 
+for accepting facultyId as input and another printSalary() to print salary.
+-	FullTimeFaculty that inherits class Faculty with two data members’ basicSalary and allowance. 
+Override input() method in this class that calls super class inut() method 
+and accepts basicSalary and allowance as input. 
+Salary should not be accepted as input but should be calculated using formula (basicSalary + allowance)
+-	PartTimeFaculty that inherits class Faculty with two data members’ workingHours, ratePerHour. 
+Override input() method in this class that calls super class inut() method and accepts workingHours 
+and ratePerHour as input. Salary should not be accepted as input but should be calculated using formula 
+( workingHour * ratePerHour )
+
+import java.util.Scanner;
+
+class Faculty{
+	int facultyId;
+	int salary;
+	Scanner sc  = new Scanner(System.in);
+	
+	void input(){
+		System.out.println("Enter Faculty Id :");
+		facultyId = sc.nextInt();
+		System.out.println("Enter Faculty Salary :");
+		salary = sc.nextInt();
+	}
+	
+	void printSalary(){
+		System.out.println("Faculty Id :"+facultyId+" Faculty Salary :"+salary);
+	}
+	
+}
+class FullTimeFaculty extends Faculty{
+	int basicSalary;
+	int allowance;
+	void input(){
+		super.input();
+		System.out.println("Enter Full Time Faculty Basic Salary :");
+		basicSalary = sc.nextInt();
+		System.out.println("Enter Full Time Faculty Allowance :");
+		allowance = sc.nextInt();
+		
+		salary = basicSalary + allowance;
+	}
+	void printSalary(){
+		//super.printSalary();
+		System.out.println("Full Time Faculty Basic Salary :"+basicSalary);
+		System.out.println("Full Time Faculty Allowance :"+basicSalary);
+		System.out.println("Full Time Faculty Total Salary :"+salary);
+	}
+}
+
+class PartTimeFaculty extends Faculty{
+	int workingHour;
+	int ratePerHour;
+	Scanner sc = new Scanner(System.in);
+	void input(){
+		super.input();
+		System.out.println("Enter PartTimeFaculty Working Hour :");
+		workingHour = sc.nextInt();
+		System.out.println("Enter Part Time Faculty Rate PerHour:");
+		ratePerHour = sc.nextInt();
+		
+		salary = workingHour * ratePerHour;
+	}
+	void printSalary(){
+		//super.printSalary();
+		System.out.println("Part Time Faculty Working Hour :"+workingHour);
+		System.out.println("Part Time Faculty Rate PerHour :"+ratePerHour);
+		System.out.println("Part Time Faculty Total Salary :"+salary);
+	}
+}
+class FacultyDemo44{
+	public static void main(String[] args){
+		System.out.println("Full Time Faculty Details :");
+		FullTimeFaculty ftf = new FullTimeFaculty();
+		ftf.input();
+		ftf.printSalary();
+		
+		System.out.println("Part Time Faculty Details :");
+		PartTimeFaculty ptf = new PartTimeFaculty();
+		ptf.input();
+		ptf.printSalary();
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------------
+45.	Create a class Student with two members : rollno and percentage. Create default and parameterized constructors. 
+Create method show() to display information. Create another class CollegeStudent inherits Student class. 
+Add a new member semester to it. Create default and parameterized constructors. 
+Also override show() method that calls super class show() method and displays semester. 
+Create another class SchoolStudent inherits Student class. Add a new member className(eg 12th ,10th etc.) to it. 
+Create default and parameterized constructors. Also override show() method that calls super class show() method and 
+displays className. Create a class( say Demo) with main method that carries out the operation of the project : 
+-- has array to store objects of any class(Student,  CollegeStudent or SchoolStudent) 
+--create two CollegeStudent  and three SchoolStudent objects and store them inside the array 
+-- display all records from the array 
+-- search record on the basic of rollno and check given rollno is of SchoolStudent or of CollegeStudent. 
+--count how many students are having A grade, if for A grade percentage >75. 
+
+import java.util.Scanner;
+
+class Student{
+	int rollno; 
+	float percentage;
+	Student(){
+		rollno = 100;
+		percentage = 70;
+	}
+	Student(int rollno, float percentage){
+		this.rollno = rollno;
+		this.percentage = percentage;
+	}
+	void show(){
+		System.out.println("Roll No :"+rollno);
+		System.out.println("Percentage :"+percentage);
+	}
+
+}
+
+class CollegeStudent extends Student{
+	String semester;
+	CollegeStudent(){
+		super();
+		this.semester = "1st";
+	}
+	CollegeStudent(int rollno, float percentage, String semester){
+		super(rollno, percentage);
+		this.semester = semester;
+	}
+	void show(){
+		System.out.println("College Student Details: ");
+		super.show();
+		System.out.println("Semester: "+semester);
+	}
+}
+
+class SchoolStudent extends Student{
+	String className;
+	SchoolStudent(){
+		super();
+		this.className = "11th";
+	}
+	SchoolStudent(int rollno, float percentage, String className){
+		super(rollno, percentage);
+		this.className = className;
+	}
+	void show(){
+		System.out.println("School Student Details: ");
+		super.show();
+		System.out.println("Class Name: "+className);
+	}
+}
+
+class StudentDemo45{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int rno, count;
+		
+		CollegeStudent cs1 = new CollegeStudent(10, 75, "1st");
+		CollegeStudent cs2 = new CollegeStudent(11, 65, "3st");
+		
+		SchoolStudent ss1 = new SchoolStudent(101, 70, "11th");
+		SchoolStudent ss2 = new SchoolStudent(103, 75, "12th");
+		SchoolStudent ss3 = new SchoolStudent(107, 72, "12th");
+		
+		Student sar[] = new Student[]{cs1, cs2, ss1, ss2, ss3};
+		
+		for(Student sr : sar){
+			sr.show();
+		}
+		
+		System.out.println("-----Enter Student Roll No-----");
+		rno = sc.nextInt();
+		for(Student sr : sar){
+			if(rno == sr.rollno)
+			{
+				sr.show();
+			}
+		}
+		
+		System.out.println("-----Number of Students having A grade-----");
+		count = 0;
+		for(Student sr : sar){
+			if(sr.percentage >= 75)
+			{
+				count++;
+			}
+		}
+		System.out.println(count);
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------------
+46.	Create a program to demonstrate the use of instanceof operator or secure reference down casting.
+import java.util.Scanner;
+class College{	
+	void show(){
+		System.out.println("College");
+	}
+}
+
+class Department extends College{
+	
+	void show(){
+		//super.show();
+		System.out.println("Department");
+	}
+
+}
+
+class Student extends Department{
+	
+	void show(){
+		super.show();
+		System.out.println("Student");
+	}
+
+}
+
+class InstanceOfDemo46{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		
+		College c = new Department();
+		
+		if(c instanceof College)
+		{
+			System.out.println("c instanceof College True");
+		}
+		else{
+			System.out.println("c instanceof College False");
+		}
+		
+		if(c instanceof Department)
+		{
+			System.out.println("c instanceof Department True");
+		}
+		else{
+			System.out.println("c instanceof Department False");
+		}
+		
+		if(c instanceof Student)
+		{
+			System.out.println("c instanceof Student True");
+		}
+		else{
+			System.out.println("c instanceof Student False");
+		}
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------------
+47.	Create a program to demonstrate constructor chaining.
+
+class ProductA{
+	private int pno;
+	private int weight;
+	ProductA()
+	{
+		this.pno = 111;
+		System.out.println("ProductA Default Constructor");
+	}
+	ProductA(int pno, int weight)
+	{
+		this.pno = pno;
+		this.weight = weight;
+		System.out.println("ProductA Parameter Constructor");
+		System.out.println("pno : "+pno+" weight : "+weight);
+	}
+}
+class ProductB extends ProductA{
+	private int price;
+	ProductB()
+	{
+		this.price = 100;
+		System.out.println("ProductB Default Constructor");
+	}
+	ProductB(int pno, int weight, int price)
+	{
+		this.price = price;
+		System.out.println("ProductB Parameter Constructor");
+		System.out.println("pno : "+pno+" weight : "+weight+" price : "+price);
+	}
+}
+class ConstructorDemo47{
+	public static void main(String[] args){
+		ProductB b1 = new ProductB();
+		ProductB b2 = new ProductB(101, 50, 500);
+	}
+}
